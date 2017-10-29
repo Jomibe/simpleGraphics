@@ -8,8 +8,9 @@ import java.util.Random;
 
 public class FrameSimpleGraphics extends JFrame {
 
+	//Attribute
 	private static final long serialVersionUID = 1L;
-	// Anfang Attribute
+	
 	private JButton buttonUp = new JButton();
 	private JButton buttonLeft = new JButton();
 	private JButton buttonRight = new JButton();
@@ -22,22 +23,21 @@ public class FrameSimpleGraphics extends JFrame {
 	private JPanel jPanel1 = new JPanel1();
 	private Random rand = new Random();
 	private int speed = rand.nextInt(10) + 1;
-	// Ende Attribute
 
 	public FrameSimpleGraphics() { // Konstruktor
 		// Frame-Initialisierung
 		super(); // Obsolet, ruft den Konstruktor der Superklasse auf
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		int frameWidth = 1000;
 		int frameHeight = 700;
-		setSize(frameWidth, frameHeight);
+		this.setSize(frameWidth, frameHeight);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		System.out.println("DEBUG: Screen Size is: " + d.width + " x " + d.height);
 		int x = (d.width - getSize().width) / 2;
 		int y = (d.height - getSize().height) / 2;
-		setLocation(x, y);
-		setTitle("simpleGraphics");
-		setResizable(false);
+		this.setLocation(x, y);
+		this.setTitle("simpleGraphics");
+		this.setResizable(false);
 		Container cp = getContentPane();
 		cp.setLayout(null);
 		// Anfang Komponenten
@@ -126,80 +126,80 @@ public class FrameSimpleGraphics extends JFrame {
 		jPanel1.setBounds(300, 25, 675, 625);
 		jPanel1.setOpaque(true);
 		jPanel1.setBackground(Color.black);
-		System.out
-				.println("DEBUG: The size of jPanel is: " + jPanel1.getSize().width + " x " + jPanel1.getSize().height);
+		System.out.println("DEBUG: The size of jPanel is: " + jPanel1.getSize().width + " x " + jPanel1.getSize().height);
 		cp.add(jPanel1);
-		// Ende Komponenten
 
 		setVisible(true);
-	} // end of public simpleGraphics
+	}
 
+	//Methoden
 	public void renew() {
 		this.repaint();
 	}
 
-	// Anfang Methoden
 	public static void main(String[] args) {
 		new FrameSimpleGraphics();
-	} // end of main
+	}
 
 	public void buttonUp_ActionPerformed(ActionEvent evt) {
 		((JPanel1) jPanel1).setPosY(((JPanel1) jPanel1).getPosY() - speed);
 		this.renew();
-	} // end of buttonUp_ActionPerformed
+	}
 
 	public void buttonLeft_ActionPerformed(ActionEvent evt) {
 		((JPanel1) jPanel1).setPosX(((JPanel1) jPanel1).getPosX() - speed);
 		this.renew();
-	} // end of buttonLeft_ActionPerformed
+	}
 
 	public void buttonRight_ActionPerformed(ActionEvent evt) {
 		((JPanel1) jPanel1).setPosX(((JPanel1) jPanel1).getPosX() + speed);
 		this.renew();
-	} // end of buttonRight_ActionPerformed
+	}
 
 	public void buttonDown_ActionPerformed(ActionEvent evt) {
 		((JPanel1) jPanel1).setPosY(((JPanel1) jPanel1).getPosY() + speed);
 		this.renew();
-	} // end of buttonDown_ActionPerformed
+	}
 
 	public void buttonSizeUp_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
+		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed()+1);
+		this.repaint();
 
-	} // end of buttonSizeUp_ActionPerformed
+	}
 
 	public void buttonSizeDown_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
-	} // end of buttonSizeDown_ActionPerformed
+		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed()-1);
+		this.repaint();
+	}
 
 	public void buttonBackgroundColor_ActionPerformed(ActionEvent evt) {
 		Color colorBackground = JColorChooser.showDialog(null, "Farbauswahl Background", null);
 		jPanel1.setBackground(colorBackground);
-	} // end of buttonBackgroundColor_ActionPerformed
+	}
 
 	public void buttonRectangleColor_ActionPerformed(ActionEvent evt) {
-		// TODO hier Quelltext einfügen
-
-	} // end of buttonRectangleColor_ActionPerformed
+		Color colorRectangle = JColorChooser.showDialog(null, "Farbauswahl Rectangle", null);
+		((JPanel1) jPanel1).setRectangleColor(colorRectangle);
+		this.repaint();
+	}
 
 	public void buttonFrameColor_ActionPerformed(ActionEvent evt) {
 		Color colorFrameBackground = JColorChooser.showDialog(null, "Farbauswahl FrameBackground", null);
 		getContentPane().setBackground(colorFrameBackground);
-	} // end of buttonFrameColor_ActionPerformed
-
-	// Ende Methoden
-} // end of class FrameSimpleGraphics
+	}
+}
 
 class JPanel1 extends JPanel {
 
+	//Attribute
 	private static final long serialVersionUID = 1L;
-	private Random rand = new Random();
+	private static Random rand = new Random();
 	int posX = rand.nextInt(50) + 1;
 	int posY = rand.nextInt(50) + 1;
-	int size = rand.nextInt(30) + 5;
+	static int size = rand.nextInt(30) + 5;
 	Color color = Color.green;
-
+	
+	//Methoden
 	public void setPosX(int _posX) {
 		if (_posX < 0) {
 			System.out.println("ERROR: posX can't be negative!");
@@ -226,12 +226,16 @@ class JPanel1 extends JPanel {
 		return this.posY;
 	}
 
-	public void setSizeAndSpeed(int _size) {
-		this.size = _size;
+	public static void setSizeAndSpeed(int _size) {
+		JPanel1.size = _size;
 	}
 
-	public int getSizeAndSpeed() {
-		return this.size;
+	public static int getSizeAndSpeed() {
+		return JPanel1.size;
+	}
+	
+	public void setRectangleColor(Color _color) {
+		this.color = _color;
 	}
 
 	@Override

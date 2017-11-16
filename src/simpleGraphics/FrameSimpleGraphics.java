@@ -42,6 +42,8 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.setLayout(null);
 		// Anfang Komponenten
 
+		System.out.println("DEBUG: speed is set to " + speed);
+		
 		buttonUp.setBounds(80, 25, 75, 75);
 		buttonUp.setText("up");
 		buttonUp.setMargin(new Insets(2, 2, 2, 2));
@@ -219,6 +221,14 @@ class JPanel1 extends JPanel {
 	}
 
 	public void setPosY(int _posY) {
+		if(_posY < 0) {
+			System.out.println("ERROR: posY can't be negative!");
+		}
+		
+		if(_posY > 625) {
+			System.out.println("ERROR: posY can't be bigger than the height of jPanel!");
+		}
+		
 		this.posY = _posY;
 	}
 
@@ -228,6 +238,7 @@ class JPanel1 extends JPanel {
 
 	public static void setSizeAndSpeed(int _size) {
 		JPanel1.size = _size;
+		System.out.println("SizeAndSpeed is set to " + size);
 	}
 
 	public static int getSizeAndSpeed() {
@@ -236,6 +247,10 @@ class JPanel1 extends JPanel {
 	
 	public void setRectangleColor(Color _color) {
 		this.color = _color;
+		String hexR = Integer.toHexString(color.getRed());
+		String hexG = Integer.toHexString(color.getGreen());
+		String hexB = Integer.toHexString(color.getBlue());
+		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
 	}
 
 	@Override

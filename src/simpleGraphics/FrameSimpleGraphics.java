@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class FrameSimpleGraphics extends JFrame {
 
-	//Attribute
+	// Attribute
 	private static final long serialVersionUID = 1L;
-	
+
 	private JButton buttonUp = new JButton();
 	private JButton buttonLeft = new JButton();
 	private JButton buttonRight = new JButton();
@@ -43,7 +43,7 @@ public class FrameSimpleGraphics extends JFrame {
 		// Anfang Komponenten
 
 		System.out.println("DEBUG: speed is set to " + speed);
-		
+
 		buttonUp.setBounds(80, 25, 75, 75);
 		buttonUp.setText("up");
 		buttonUp.setMargin(new Insets(2, 2, 2, 2));
@@ -134,7 +134,7 @@ public class FrameSimpleGraphics extends JFrame {
 		setVisible(true);
 	}
 
-	//Methoden
+	// Methoden
 	public void renew() {
 		this.repaint();
 	}
@@ -164,44 +164,56 @@ public class FrameSimpleGraphics extends JFrame {
 	}
 
 	public void buttonSizeUp_ActionPerformed(ActionEvent evt) {
-		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed()+1);
+		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed() + 1);
 		this.repaint();
 
 	}
 
 	public void buttonSizeDown_ActionPerformed(ActionEvent evt) {
-		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed()-1);
+		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed() - 1);
 		this.repaint();
 	}
 
 	public void buttonBackgroundColor_ActionPerformed(ActionEvent evt) {
 		Color colorBackground = JColorChooser.showDialog(null, "Farbauswahl Background", null);
 		jPanel1.setBackground(colorBackground);
+		String hexR = Integer.toHexString(colorBackground.getRed());
+		String hexG = Integer.toHexString(colorBackground.getGreen());
+		String hexB = Integer.toHexString(colorBackground.getBlue());
+		System.out.println("DEBUG: The background color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
 	}
 
 	public void buttonRectangleColor_ActionPerformed(ActionEvent evt) {
 		Color colorRectangle = JColorChooser.showDialog(null, "Farbauswahl Rectangle", null);
 		((JPanel1) jPanel1).setRectangleColor(colorRectangle);
+		String hexR = Integer.toHexString(colorRectangle.getRed());
+		String hexG = Integer.toHexString(colorRectangle.getGreen());
+		String hexB = Integer.toHexString(colorRectangle.getBlue());
+		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
 		this.repaint();
 	}
 
 	public void buttonFrameColor_ActionPerformed(ActionEvent evt) {
 		Color colorFrameBackground = JColorChooser.showDialog(null, "Farbauswahl FrameBackground", null);
 		getContentPane().setBackground(colorFrameBackground);
+		String hexR = Integer.toHexString(colorFrameBackground.getRed());
+		String hexG = Integer.toHexString(colorFrameBackground.getGreen());
+		String hexB = Integer.toHexString(colorFrameBackground.getBlue());
+		System.out.println("DEBUG: The Frame color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
 	}
 }
 
 class JPanel1 extends JPanel {
 
-	//Attribute
+	// Attribute
 	private static final long serialVersionUID = 1L;
 	private static Random rand = new Random();
 	int posX = rand.nextInt(50) + 1;
 	int posY = rand.nextInt(50) + 1;
 	static int size = rand.nextInt(30) + 5;
 	Color color = Color.green;
-	
-	//Methoden
+
+	// Methoden
 	public void setPosX(int _posX) {
 		if (_posX < 0) {
 			System.out.println("ERROR: posX can't be negative!");
@@ -221,14 +233,16 @@ class JPanel1 extends JPanel {
 	}
 
 	public void setPosY(int _posY) {
-		if(_posY < 0) {
+		if (_posY < 0) {
 			System.out.println("ERROR: posY can't be negative!");
+			return;
 		}
-		
-		if(_posY > 625) {
+
+		if (_posY > 625) {
 			System.out.println("ERROR: posY can't be bigger than the height of jPanel!");
+			return;
 		}
-		
+
 		this.posY = _posY;
 	}
 
@@ -244,7 +258,7 @@ class JPanel1 extends JPanel {
 	public static int getSizeAndSpeed() {
 		return JPanel1.size;
 	}
-	
+
 	public void setRectangleColor(Color _color) {
 		this.color = _color;
 		String hexR = Integer.toHexString(color.getRed());
@@ -259,5 +273,9 @@ class JPanel1 extends JPanel {
 		g.drawRect(posX, posY, size, size);
 		g.setColor(color);
 		g.fillRect(posX, posY, size, size);
+		
+		g.drawRect(55, 55, 10, 10);
+		g.setColor(Color.red);
+		g.fillRect(55, 55, 10, 10);
 	}
 }

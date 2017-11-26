@@ -95,7 +95,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonSizeUp);
 		buttonSizeDown.setBounds(120, 280, 75, 75);
 		buttonSizeDown.setText("size -");
-		buttonUp.setMnemonic(KeyEvent.VK_Y);
+		buttonSizeDown.setMnemonic(KeyEvent.VK_Y);
 		buttonSizeDown.setMargin(new Insets(2, 2, 2, 2));
 		buttonSizeDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -105,7 +105,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonSizeDown);
 		buttonBackgroundColor.setBounds(25, 375, 175, 75);
 		buttonBackgroundColor.setText("background color");
-		buttonUp.setMnemonic(KeyEvent.VK_B);
+		buttonBackgroundColor.setMnemonic(KeyEvent.VK_B);
 		buttonBackgroundColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonBackgroundColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -115,7 +115,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonBackgroundColor);
 		buttonRectangleColor.setBounds(25, 475, 175, 75);
 		buttonRectangleColor.setText("rectangle color");
-		buttonUp.setMnemonic(KeyEvent.VK_R);
+		buttonRectangleColor.setMnemonic(KeyEvent.VK_R);
 		buttonRectangleColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonRectangleColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -125,7 +125,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonRectangleColor);
 		buttonFrameColor.setBounds(25, 575, 175, 75);
 		buttonFrameColor.setText("frame color");
-		buttonUp.setMnemonic(KeyEvent.VK_F);
+		buttonFrameColor.setMnemonic(KeyEvent.VK_F);
 		buttonFrameColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonFrameColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {

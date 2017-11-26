@@ -3,7 +3,6 @@ package simpleGraphics;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 import java.util.Random;
 
 public class FrameSimpleGraphics extends JFrame {
@@ -46,6 +45,7 @@ public class FrameSimpleGraphics extends JFrame {
 
 		buttonUp.setBounds(80, 25, 75, 75);
 		buttonUp.setText("up");
+		buttonUp.setMnemonic(KeyEvent.VK_UP);
 		buttonUp.setMargin(new Insets(2, 2, 2, 2));
 		buttonUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -55,6 +55,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonUp);
 		buttonLeft.setBounds(40, 105, 75, 75);
 		buttonLeft.setText("left");
+		buttonLeft.setMnemonic(KeyEvent.VK_LEFT);
 		buttonLeft.setMargin(new Insets(2, 2, 2, 2));
 		buttonLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -64,6 +65,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonLeft);
 		buttonRight.setBounds(120, 105, 75, 75);
 		buttonRight.setText("right");
+		buttonRight.setMnemonic(KeyEvent.VK_RIGHT);
 		buttonRight.setMargin(new Insets(2, 2, 2, 2));
 		buttonRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -73,6 +75,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonRight);
 		buttonDown.setBounds(80, 184, 75, 75);
 		buttonDown.setText("down");
+		buttonDown.setMnemonic(KeyEvent.VK_DOWN);
 		buttonDown.setMargin(new Insets(2, 2, 2, 2));
 		buttonDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -82,6 +85,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonDown);
 		buttonSizeUp.setBounds(40, 280, 75, 75);
 		buttonSizeUp.setText("size +");
+		buttonSizeUp.setMnemonic(KeyEvent.VK_X);
 		buttonSizeUp.setMargin(new Insets(2, 2, 2, 2));
 		buttonSizeUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -91,6 +95,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonSizeUp);
 		buttonSizeDown.setBounds(120, 280, 75, 75);
 		buttonSizeDown.setText("size -");
+		buttonUp.setMnemonic(KeyEvent.VK_Y);
 		buttonSizeDown.setMargin(new Insets(2, 2, 2, 2));
 		buttonSizeDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -100,6 +105,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonSizeDown);
 		buttonBackgroundColor.setBounds(25, 375, 175, 75);
 		buttonBackgroundColor.setText("background color");
+		buttonUp.setMnemonic(KeyEvent.VK_B);
 		buttonBackgroundColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonBackgroundColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -109,6 +115,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonBackgroundColor);
 		buttonRectangleColor.setBounds(25, 475, 175, 75);
 		buttonRectangleColor.setText("rectangle color");
+		buttonUp.setMnemonic(KeyEvent.VK_R);
 		buttonRectangleColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonRectangleColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -118,6 +125,7 @@ public class FrameSimpleGraphics extends JFrame {
 		cp.add(buttonRectangleColor);
 		buttonFrameColor.setBounds(25, 575, 175, 75);
 		buttonFrameColor.setText("frame color");
+		buttonUp.setMnemonic(KeyEvent.VK_F);
 		buttonFrameColor.setMargin(new Insets(2, 2, 2, 2));
 		buttonFrameColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -166,7 +174,6 @@ public class FrameSimpleGraphics extends JFrame {
 	public void buttonSizeUp_ActionPerformed(ActionEvent evt) {
 		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed() + 1);
 		this.repaint();
-
 	}
 
 	public void buttonSizeDown_ActionPerformed(ActionEvent evt) {
@@ -211,6 +218,10 @@ class JPanel1 extends JPanel {
 	int posX = rand.nextInt(50) + 1;
 	int posY = rand.nextInt(50) + 1;
 	static int size = rand.nextInt(30) + 5;
+	
+	int posX2 = rand.nextInt(50) + 1;
+	int posY2 = rand.nextInt(50) + 1;
+	static int size2 = rand.nextInt(30) + 5;
 	Color color = Color.green;
 
 	// Methoden
@@ -274,8 +285,8 @@ class JPanel1 extends JPanel {
 		g.setColor(color);
 		g.fillRect(posX, posY, size, size);
 		
-		g.drawRect(55, 55, 10, 10);
+		g.drawRect(posX2, posY2, size2, size2);
 		g.setColor(Color.red);
-		g.fillRect(55, 55, 10, 10);
+		g.fillRect(posX2, posY2, size2, size2);
 	}
 }

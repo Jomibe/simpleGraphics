@@ -19,9 +19,12 @@ public class FrameSimpleGraphics extends JFrame {
 	private JButton buttonBackgroundColor = new JButton();
 	private JButton buttonRectangleColor = new JButton();
 	private JButton buttonFrameColor = new JButton();
-	private JPanel jPanel1 = new JPanel1();
+	private JPanel jPanel1 = new jPanel1();
 	private Random rand = new Random();
 	private int speed = rand.nextInt(10) + 1;
+	private Color colorBackground;
+	private Color colorRectangle;
+	private Color colorFrame;
 
 	public FrameSimpleGraphics() { // Konstruktor
 		// Frame-Initialisierung
@@ -136,7 +139,8 @@ public class FrameSimpleGraphics extends JFrame {
 		jPanel1.setBounds(300, 25, 675, 625);
 		jPanel1.setOpaque(true);
 		jPanel1.setBackground(Color.black);
-		System.out.println("DEBUG: The size of jPanel is: " + jPanel1.getSize().width + " x " + jPanel1.getSize().height);
+		System.out
+				.println("DEBUG: The size of jPanel is: " + jPanel1.getSize().width + " x " + jPanel1.getSize().height);
 		cp.add(jPanel1);
 
 		setVisible(true);
@@ -152,51 +156,49 @@ public class FrameSimpleGraphics extends JFrame {
 	}
 
 	public void buttonUp_ActionPerformed(ActionEvent evt) {
-		((JPanel1) jPanel1).setPosY(((JPanel1) jPanel1).getPosY() - speed);
+		((jPanel1) jPanel1).setPosY(((jPanel1) jPanel1).getPosY() - speed);
 		this.renew();
 	}
 
 	public void buttonLeft_ActionPerformed(ActionEvent evt) {
-		((JPanel1) jPanel1).setPosX(((JPanel1) jPanel1).getPosX() - speed);
+		((jPanel1) jPanel1).setPosX(((jPanel1) jPanel1).getPosX() - speed);
 		this.renew();
 	}
 
 	public void buttonRight_ActionPerformed(ActionEvent evt) {
-		((JPanel1) jPanel1).setPosX(((JPanel1) jPanel1).getPosX() + speed);
+		((jPanel1) jPanel1).setPosX(((jPanel1) jPanel1).getPosX() + speed);
 		this.renew();
 	}
 
 	public void buttonDown_ActionPerformed(ActionEvent evt) {
-		((JPanel1) jPanel1).setPosY(((JPanel1) jPanel1).getPosY() + speed);
+		((jPanel1) jPanel1).setPosY(((jPanel1) jPanel1).getPosY() + speed);
 		this.renew();
 	}
 
 	public void buttonSizeUp_ActionPerformed(ActionEvent evt) {
-		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed() + 1);
+		simpleGraphics.jPanel1.setSizeAndSpeed(simpleGraphics.jPanel1.getSizeAndSpeed() + 1);
 		this.repaint();
 	}
 
 	public void buttonSizeDown_ActionPerformed(ActionEvent evt) {
-		JPanel1.setSizeAndSpeed(JPanel1.getSizeAndSpeed() - 1);
+		simpleGraphics.jPanel1.setSizeAndSpeed(simpleGraphics.jPanel1.getSizeAndSpeed() - 1);
 		this.repaint();
 	}
 
 	public void buttonBackgroundColor_ActionPerformed(ActionEvent evt) {
-		Color colorBackground = JColorChooser.showDialog(null, "Farbauswahl Background", null);
+		// ((jPanel1) jPanel1).getNewBackgroundColor();
+		colorBackground = JColorChooser.showDialog(null, "Farbauswahl Hintergrund", null);
 		jPanel1.setBackground(colorBackground);
-		String hexR = Integer.toHexString(colorBackground.getRed());
-		String hexG = Integer.toHexString(colorBackground.getGreen());
-		String hexB = Integer.toHexString(colorBackground.getBlue());
-		System.out.println("DEBUG: The background color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
 	}
 
 	public void buttonRectangleColor_ActionPerformed(ActionEvent evt) {
 		Color colorRectangle = JColorChooser.showDialog(null, "Farbauswahl Rectangle", null);
-		((JPanel1) jPanel1).setRectangleColor(colorRectangle);
+		((jPanel1) jPanel1).setRectangleColor(colorRectangle);
 		String hexR = Integer.toHexString(colorRectangle.getRed());
 		String hexG = Integer.toHexString(colorRectangle.getGreen());
 		String hexB = Integer.toHexString(colorRectangle.getBlue());
-		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
+		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";"
+				+ hexB.toUpperCase());
 		this.repaint();
 	}
 
@@ -206,22 +208,24 @@ public class FrameSimpleGraphics extends JFrame {
 		String hexR = Integer.toHexString(colorFrameBackground.getRed());
 		String hexG = Integer.toHexString(colorFrameBackground.getGreen());
 		String hexB = Integer.toHexString(colorFrameBackground.getBlue());
-		System.out.println("DEBUG: The Frame color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
+		System.out.println("DEBUG: The Frame color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";"
+				+ hexB.toUpperCase());
 	}
 }
 
-class JPanel1 extends JPanel {
+class jPanel1 extends JPanel {
 
 	// Attribute
 	private static final long serialVersionUID = 1L;
-	private static Random rand = new Random();
-	int posX = rand.nextInt(50) + 1;
-	int posY = rand.nextInt(50) + 1;
-	static int size = rand.nextInt(30) + 5;
-	
-	int posX2 = rand.nextInt(50) + 1;
-	int posY2 = rand.nextInt(50) + 1;
-	static int size2 = rand.nextInt(30) + 5;
+	//private static Random rand = new Random();
+	//int posX = rand.nextInt(50) + 1;
+	int posX = 10;
+	int posY = 10;
+	static int size = 15;
+
+	int posX2 = 30;
+	int posY2 = 50;
+	static int size2 = 12;
 	Color color = Color.green;
 
 	// Methoden
@@ -253,7 +257,22 @@ class JPanel1 extends JPanel {
 			System.out.println("ERROR: posY can't be bigger than the height of jPanel!");
 			return;
 		}
-
+		
+		if(_posY > (posY2 - size2) && _posY < (posY + size2)) {
+			if(posX > (posX2 - size2) && posX < (posX2 + size2)) {
+					if(_posY > posY) {
+						posY = posY2 - size;
+						System.out.println("ERROR: can't go down");
+						return;
+					}
+					if(_posY < posY) {
+						posY = posY2 + size;
+						System.out.println("ERROR: can't go up");
+						return;
+					}
+			}
+		}
+		
 		this.posY = _posY;
 	}
 
@@ -262,12 +281,12 @@ class JPanel1 extends JPanel {
 	}
 
 	public static void setSizeAndSpeed(int _size) {
-		JPanel1.size = _size;
+		jPanel1.size = _size;
 		System.out.println("SizeAndSpeed is set to " + size);
 	}
 
 	public static int getSizeAndSpeed() {
-		return JPanel1.size;
+		return jPanel1.size;
 	}
 
 	public void setRectangleColor(Color _color) {
@@ -275,7 +294,30 @@ class JPanel1 extends JPanel {
 		String hexR = Integer.toHexString(color.getRed());
 		String hexG = Integer.toHexString(color.getGreen());
 		String hexB = Integer.toHexString(color.getBlue());
-		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";" + hexB.toUpperCase());
+		System.out.println("DEBUG: The rectangle color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase() + ";"
+				+ hexB.toUpperCase());
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		if (backgroundColor == null) {
+			System.out.println("ERROR : backgroundColor can't be null!");
+			backgroundColor = this.getBackground();
+			System.out.println("DEBUG : Setting backgroundColor to previous value.");
+			return;
+		}
+
+		this.setBackground(backgroundColor);
+
+		String hexR = Integer.toHexString(backgroundColor.getRed());
+		String hexG = Integer.toHexString(backgroundColor.getGreen());
+		String hexB = Integer.toHexString(backgroundColor.getBlue());
+		System.out.println("DEBUG: The background color is set to " + hexR.toUpperCase() + ";" + hexG.toUpperCase()
+				+ ";" + hexB.toUpperCase());
+	}
+
+	public void getNewBackgroundColor() {
+		Color temp = this.getBackground();
+		temp = JColorChooser.showDialog(null, "Farbauswahl Background", temp);
 	}
 
 	@Override
@@ -284,7 +326,7 @@ class JPanel1 extends JPanel {
 		g.drawRect(posX, posY, size, size);
 		g.setColor(color);
 		g.fillRect(posX, posY, size, size);
-		
+
 		g.drawRect(posX2, posY2, size2, size2);
 		g.setColor(Color.red);
 		g.fillRect(posX2, posY2, size2, size2);

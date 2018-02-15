@@ -240,6 +240,23 @@ class jPanel1 extends JPanel {
 			return;
 		}
 
+		//collision detection
+		/*if(_posX > posX2 && _posX < (posX + size2)) {
+			if(posY > posY2 && posY < (posY2 + size2)) {
+				if(_posX > posX) {
+					posX = posX2 - size;
+					System.out.println("error x axis 1");
+					return;
+				}
+				
+				else if(_posX < posX) {
+					posX = posX2 + size;
+					System.out.println("error x axis 2");
+					return;
+				}
+			}
+		}*/
+		
 		this.posX = _posX;
 	}
 
@@ -258,20 +275,21 @@ class jPanel1 extends JPanel {
 			return;
 		}
 		
-		if(_posY > (posY2 - size2) && _posY < (posY + size2)) {
+		//collision detection
+		/*if(_posY > (posY2 + size2) && _posY < (posY - size2)) {
 			if(posX > (posX2 - size2) && posX < (posX2 + size2)) {
 					if(_posY > posY) {
-						posY = posY2 - size;
+						posY = posY2 - size +1;
 						System.out.println("ERROR: can't go down");
 						return;
 					}
 					if(_posY < posY) {
-						posY = posY2 + size;
+						posY = posY2 + size -1;
 						System.out.println("ERROR: can't go up");
 						return;
 					}
 			}
-		}
+		}*/
 		
 		this.posY = _posY;
 	}
